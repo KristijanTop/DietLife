@@ -38,10 +38,11 @@ Ideja je napraviti aplikacju koja će služiti kao platforma preko koje se mogu 
 https://www.figma.com/proto/ASzxJRQrf7J6Tixl7x65zr/DietLife?node-id=3%3A0&scaling=scale-down
 
 #7 Zaduženja planirana po članu tima:
-Domagoj Bičanić:
+
+Domagoj Bičanić: Izrada screena za moje recepte te opcija za dodavanje mog recepta
 
 Danijel Baltić:
 
 Kristijan Topić:
 
-U projektu večinu radimo i rješavamo skupno, kako bi se svaki član tima što bolje naučio i upoznao sa svakim dijelom problema i rješenja koje nas očekuju pri izradi projekta i dovođenja projekta do završne faze.
+U projektu večinu radimo i rješavamo skupno, kako bi se svaki član tima što bolje naučio i upoznao sa svakim dijelom problema i rješenja koje nas očekuju pri izradi projekta i dovođenja projekta do završne faze. Planirana zaduženja smo okvirno podjelili, ali svakako čemo kroz njih proći i skupno kako bi svaki član tima što bolje razumio svaki element kako i na koji način funkcionira u projektu.
