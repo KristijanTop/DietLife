@@ -32,7 +32,7 @@ doc.dr.sc. Nikola Tanković (ntankovic.unipu.hr)
 Toni Starčić, univ.bacc.inf.
 
 #5 Kratki opis funkcionalnosti:
-Ideja je napraviti aplikacju koja će služiti kao platforma preko koje se mogu povezati ljudi koji se bave fitnessom te žele unaprijediti način ishrane sa novim idejama za recepture jela. Unutar aplikacije će korisnici moći dijeliti svoje ideje koje će biti svrstavane pod kategorije raznih dijeta koje danas postoje poput primjerice keto dijete, paleo dijete, fleksibilna ishrana, veganska ishrana i sl. Dakle korisnici će sami dodavati ideje za recepte koji će se spremati u bazu i dijeliti sa ostalim korisnicima. Također za jelo će biti obavezno navesti koliko okvirno sadrži kalorija te makronutrijenata (bjelančevina, ugljikohidrata i masti) kako bi korisnici mogli voditi evidenciju o tome ukoliko žele.
+Temeljna funkcionalnost aplikacije je da se povežu ljudi koji se bave fitnessom i žele posvetiti pažnju svojoj prehrani. Unutar aplikacije će pronaći ideje za recepte koje će biti dodavane od strane drugih korisnika uz obavezno navođenje nutritivnih vrijednoti kako bi korsinici mogli voditi evidenciju o tome ukoliko žele.
 
 #6 Link javnog prototipa:
 https://www.figma.com/proto/ASzxJRQrf7J6Tixl7x65zr/DietLife?node-id=3%3A0&scaling=scale-down
@@ -43,6 +43,6 @@ Domagoj Bičanić: Izrada screena za moje recepte te opcija za dodavanje mog rec
 
 Danijel Baltić:
 
-Kristijan Topić:
+Kristijan Topić: Izrada main screena za pronalaženje recepata, izrada search funkcija i funkcija za dodavanje u fovorite, rad na bazi
 
-U projektu večinu radimo i rješavamo skupno, kako bi se svaki član tima što bolje naučio i upoznao sa svakim dijelom problema i rješenja koje nas očekuju pri izradi projekta i dovođenja projekta do završne faze. Planirana zaduženja smo okvirno podjelili, ali svakako čemo kroz njih proći i skupno kako bi svaki član tima što bolje razumio svaki element kako i na koji način funkcionira u projektu.
+U projektu većinu radimo i rješavamo skupno, kako bi se svaki član tima što bolje naučio i upoznao sa svakim dijelom problema i rješenja koje nas očekuju pri izradi projekta i dovođenja projekta do završne faze. Planirana zaduženja smo okvirno podjelili, ali svakako čemo kroz njih proći i skupno kako bi svaki član tima što bolje razumio svaki element kako i na koji način funkcionira u projektu.
