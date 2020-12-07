@@ -41,7 +41,7 @@ https://www.figma.com/proto/ASzxJRQrf7J6Tixl7x65zr/DietLife?node-id=3%3A0&scalin
 
 Domagoj Bičanić: Izrada screena za moje recepte te opcija za dodavanje mog recepta
 
-Danijel Baltić:
+Danijel Baltić:Izrada pocetnoga screena kao i login screna te registration i account screena.
 
 Kristijan Topić: Izrada main screena za pronalaženje recepata, izrada search funkcija i funkcija za dodavanje u fovorite, rad na bazi
 
