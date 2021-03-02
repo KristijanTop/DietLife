@@ -20,7 +20,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #1 Naziv aplikacije i sastav vašeg tima:
 DietLife
-Kristijan Topić,Danijel Baltić, Domagoj Bičanić
+Kristijan Topić, Danijel Baltić, Domagoj Bičanić
 
 #2 Fakultet ekonomije i turizma u Puli (https://fet.unipu.hr/)
 

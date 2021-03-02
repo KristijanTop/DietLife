@@ -37,8 +37,8 @@
               >
             </li>
             <li class="nav-item">
-              <router-link to="/about" class="nav-link" href="#"
-                >About</router-link
+              <router-link to="/Signup" class="nav-link" href="@/views/Signup.vue"
+                >Sign up</router-link
               >
             </li>
           </ul>
@@ -61,6 +61,7 @@
 </template>
 
 <style lang="scss">
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
