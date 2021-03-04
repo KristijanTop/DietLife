@@ -1,7 +1,7 @@
 <template>
   <div class="col">
     <div style="width:400px" class="card">
-      <img src="https://picsum.photos/200/300" class="card-img-top" alt="..." />
+      <img :src="info" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">
@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  props: ["info"],
   name: "RecipeCard",
 };
 </script>
