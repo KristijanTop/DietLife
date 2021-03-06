@@ -41,6 +41,10 @@
                 >Sign up</router-link
               >
             </li>
+            <li class="nav-item">
+              <router-link to="/Login" class="nav-link" href="@/views/Login.vue"
+                >Login</router-link>
+            </li>
           </ul>
           </div>
           
