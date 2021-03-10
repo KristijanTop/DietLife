@@ -11,7 +11,9 @@
             class="form-control"
             placeholder="E-mail"
             required
+            v-model="username"
           />
+          <span v-if="msg.email">{{ msg.email }}</span>
         </div>
         <div class="form-group mb-3">
           <input
@@ -20,6 +22,7 @@
             id="fullname"
             class="form-control"
             placeholder="Full Name"
+            v-model="fullname"
           />
         </div>
         <div class="form-group mb-3">
@@ -28,8 +31,10 @@
             name="Password"
             class="form-control"
             placeholder="Password"
+            v-model="password"
             required
           />
+          <span v-if="msg.password">{{ msg.password }}</span>
         </div>
         <input
           type="button"
@@ -44,6 +49,66 @@
     </div>
   </div>
 </template>
+
+<script>
+import { firebase } from "@/firebase";
+
+export default {
+  name: "Signup",
+  data() {
+    return {
+      username: "",
+      msg: [],
+      fullname: "",
+      password: "",
+    };
+  },
+
+  watch: {
+    password(value) {
+      this.password = value;
+      this.validatePassword(value);
+    },
+    username(value) {
+      this.email = value;
+      this.validateEmail(value);
+    },
+  },
+
+  methods: {
+    validateEmail(value) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+        this.msg["email"] = "";
+      } else {
+        this.msg["email"] = "Invalid Email Address";
+      }
+    },
+
+    validatePassword(value) {
+      let difference = 6 - value.length;
+      if (value.length < 6) {
+        this.msg["password"] =
+          "Must be 6 characters! " + difference + " characters left";
+      } else {
+        this.msg["password"] = "";
+      }
+    },
+
+    signup() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.username, this.password)
+        .then(function() {
+          alert("Uspješna registracija");
+        })
+        .catch(function(error) {
+          console.log("Došlo je do greške", error);
+        });
+      console.log("Nastavak");
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 #signup {
@@ -82,5 +147,11 @@
 }
 .container form .signup-link a:hover {
   text-decoration: underline;
+}
+span {
+  padding-top: 0px;
+  margin-top: 0px;
+  font-size: 12px;
+  color: red;
 }
 </style>
