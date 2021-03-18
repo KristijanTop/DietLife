@@ -36,14 +36,17 @@
                 >Home</router-link
               >
             </li>
-            <li class="nav-item">
+            <li v-if="!store.currentUser" class="nav-item">
               <router-link to="/Signup" class="nav-link" href="@/views/Signup.vue"
                 >Sign up</router-link
               >
             </li>
-            <li class="nav-item">
+            <li v-if="!store.currentUser" class="nav-item">
               <router-link to="/Login" class="nav-link" href="@/views/Login.vue"
                 >Login</router-link>
+            </li>
+            <li v-if="store.currentUser" class="nav-item">
+              <a href="#" @click="logout()" class="nav-link">Logout</a>
             </li>
           </ul>
           </div>
@@ -63,6 +66,43 @@
     
   </div>
 </template>
+
+<script>
+import store from "@/store";
+import { firebase } from '@/firebase';
+import router from "@/router";
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in.
+    console.log("...", user.email);
+    store.currentUser = user.email;
+  } else{
+    console.log("No user!");
+    store.currentUser = null;
+    if (router.name !== "Login")
+      router.push({name: "Login"})
+  }
+});
+
+export default {
+  name: "app",
+  data(){
+      return {
+        store,
+      };
+  },
+
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(()=>{
+          this.$router.push({name: "Login"});
+      })
+    },
+  },
+  
+};
+</script>
 
 <style lang="scss">
 
