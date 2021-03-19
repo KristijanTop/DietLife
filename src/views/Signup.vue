@@ -95,11 +95,16 @@ export default {
     },
 
     signup() {
+      console.log("signup... " + this.username);
+
+
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.username, this.password)
-        .then(function() {
-          alert("Uspješna registracija");
+        .then((result) => {
+          alert("Uspješna registracija", result);
+            this.$router.replace({ name: 'Home'});
+
         })
         .catch(function(error) {
           console.log("Došlo je do greške", error);
