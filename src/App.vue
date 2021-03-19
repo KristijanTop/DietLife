@@ -9,6 +9,8 @@
             alt="DietLife-logo"
             height="50"
             class="d-inline-block align-top"
+            
+          
           />
         </a>
 
@@ -46,7 +48,7 @@
                 >Login</router-link>
             </li>
             <li v-if="store.currentUser" class="nav-item">
-              <a href="#" @click="logout()" class="nav-link">Logout</a>
+              <a href="#" @click.prevent="logout()" class="nav-link">Logout</a>
             </li>
           </ul>
           </div>
@@ -73,16 +75,23 @@ import { firebase } from '@/firebase';
 import router from "@/router";
 
 firebase.auth().onAuthStateChanged((user) => {
+  const currentRoute = router.currentRoute;
   if (user) {
     // User is signed in.
     console.log("...", user.email);
     store.currentUser = user.email;
-  } else{
+
+    if (!currentRoute.meta.needsUser) {
+      router.push({name: 'Home'});
+    }
+  } else {
     console.log("No user!");
     store.currentUser = null;
-    if (router.name !== "Login")
-      router.push({name: "Login"})
+    if (currentRoute.meta.needsUser) {
+      router.push({name: 'Login'});
+    }
   }
+
 });
 
 export default {
