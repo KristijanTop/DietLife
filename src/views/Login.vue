@@ -1,63 +1,101 @@
 <template>
-    <div class="about">
-    <h1 class="title">Login to your Dietlife account</h1>
-    <div class="container">
-    <div class="row">
-    <div class="col-sm"></div>
-    <div class="col-sm">
+  <div class="container">
+    <div id="login">
+      <div class="row">
+        <div class="tittle">Login</div>
         <form>
-            <div class="form-group">
-            <label class="input_name" for="exampleInputEmail1">Email address</label>
-            <input type="email" v-model="username" class="form-control"
-id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-            <small id="emailHelp" class="form-text text-muted" >We'll never share your email with anyone else.</small>
-            </div>
-                <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password"  v-model="password" class="form-control"
-id="exampleInputPassword1" placeholder="Password" />
-                    </div>
-                        <button type="button" @click="login()" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            <div class="col-sm"></div>
-        </div>
+          <div class="form-group mb-3">
+            <input
+              type="email"
+              v-model="username"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="E-mail"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <input
+              type="password"
+              v-model="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+            />
+          </div>
+          <input
+            type="button"
+            @click="login()"
+            class="btn btn-primary btn-lg"
+            value="Login"
+          />
+          <div class="signup-link">
+            Don't have an account? <a href="Signup">Sign up</a>
+          </div>
+        </form>
+      </div>
     </div>
- </div>
+  </div>
 </template>
 
 <script>
-import { firebase } from '@/firebase';
+import { firebase } from "@/firebase";
 
 export default {
-    name: "login",
-    data() {
-        return {
-            username: "",
-            password: "",
-        }
-    },
-    methods:{
-        login() {
-            console.log("login... " + this.username);
+  name: "login",
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    login() {
+      console.log("login... " + this.username);
 
-            firebase
-            .auth()
-            .signInWithEmailAndPassword(this.username, this.password)
-            .then((result) => {
-                console.log("Uspiješna prijava!", result);  
-            })
-            .catch(function(e){
-                console.error("Neuspiješna prijava!", e);
-            });
-        },
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.username, this.password)
+        .then((result) => {
+          console.log("Uspiješna prijava!", result);
+        })
+        .catch(function(e) {
+          console.error("Neuspiješna prijava!", e);
+        });
     },
+  },
 };
 </script>
 
-<style scoped>
-.title{
-    font-size: 20px;
-    text-align: center;
+<style lang="scss">
+#login {
+  width: 380px;
+  margin: 5% auto 0;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.container form {
+  padding: 10px 30px 25px 30px;
+}
+.container .tittle {
+  color: rgba(10, 95, 253, 0.959);
+  font-size: 40px;
+  margin-top: 20px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 100px;
+}
+.container input {
+  font-size: 17px;
+  border: 1px double rgb(102, 97, 96);
+  border-radius: 4px;
+  text-align: center;
+}
+.container form .signup-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #262626;
 }
 </style>

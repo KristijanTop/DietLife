@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="nav-buttons">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <li v-if="store.currentUser" class="nav-item">
               <router-link
                 to="/"
                 class="nav-link active"
@@ -48,12 +48,12 @@
                 >Login</router-link>
             </li>
             <li v-if="store.currentUser" class="nav-item">
-              <a href="#" @click.prevent="logout()" class="nav-link">Logout</a>
+              <a href="#" @click.prevent="logout()" class="nav-link">Log out</a>
             </li>
           </ul>
           </div>
           
-          <form class="d-flex">
+          <form  v-if="store.currentUser" class="d-flex">
             <input
               class="form-control me-2"
               type="search"
