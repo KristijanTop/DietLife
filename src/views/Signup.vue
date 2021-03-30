@@ -119,14 +119,15 @@ export default {
   margin: 5% auto 0;
   background: #fff;
   border-radius: 15px;
-  box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 15px 15px rgba(54, 115, 228, 0.925);
   text-align: center;
 }
 .container form {
   padding: 10px 30px 25px 30px;
 }
 .container .tittle {
-  color: rgba(10, 95, 253, 0.959);
+  font-family: 'Yatra One', serif;
+  color: rgba(25, 106, 255, 0.925);
   font-size: 40px;
   margin-top: 20px;
   font-weight: 500;

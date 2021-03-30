@@ -37,6 +37,10 @@
                 href="#"
                 >Home</router-link
               >
+              <li v-if="store.currentUser" class="nav-item">
+              <router-link to="/Newpost" class="nav-link" href="@/views/Newpost.vue"
+                >New post</router-link
+              >
             </li>
             <li v-if="!store.currentUser" class="nav-item">
               <router-link to="/Signup" class="nav-link" href="@/views/Signup.vue"
