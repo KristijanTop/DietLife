@@ -50,9 +50,11 @@ export default {
           this.cards = [];
           query.forEach((doc) => {
             const data = doc.data();
+            
 
             this.cards.push({
               id: doc.id,
+              name: data.name,
               time: data.posted_at,
               description: data.desc,
               url: data.url,

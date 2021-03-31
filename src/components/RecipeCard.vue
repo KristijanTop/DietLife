@@ -2,9 +2,10 @@
   <div class="col">
     <div style="width:325px" class="card text-center">
       <div class="card-header text-muted">
-        {{ postedFromNow }}</div>
+        {{ info.name }}</div>
       <img :src="info.url" class="card-img-top" />
       <div class="card-body p-0">
+        <div class="card-footer text-muted">{{ postedFromNow }}</div>
         <div class="card-footer">{{ info.description }}</div>
       </div>
     </div>
