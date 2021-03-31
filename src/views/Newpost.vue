@@ -8,6 +8,7 @@
           id="imageRecipe"
           type="text"
           placeholder="Recipe Name"
+          required
         />
       </div>
       <div class="form-box">
@@ -17,6 +18,7 @@
           cols="30"
           rows="5"
           placeholder="Description"
+          required
         ></textarea>
       </div>
       <div class="form">
@@ -25,6 +27,7 @@
           id="imageUrl"
           type="text"
           placeholder="Image URL"
+          required
         />
         <span><b> or </b></span>
         <input type="file" accept="image/*" />
@@ -68,7 +71,9 @@ export default {
           this.newImageRecipe = "";
           this.newImageDescription = "";
           this.newImageUrL = "";
-          //this.getPosts();
+
+          this.$router.push({ name: 'Home'});
+          
         })
         .catch((e) => {
           console.error(e);
