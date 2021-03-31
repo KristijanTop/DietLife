@@ -48,6 +48,7 @@ export default {
       newImageUrL: "",
     };
   },
+
   methods: {
     postNewImage() {
       const imageRecipe = this.newImageRecipe;
@@ -67,6 +68,7 @@ export default {
           this.newImageRecipe = "";
           this.newImageDescription = "";
           this.newImageUrL = "";
+          //this.getPosts();
         })
         .catch((e) => {
           console.error(e);
@@ -101,7 +103,7 @@ export default {
   text-align: center;
   margin: 0px 0px 20px;
   font-size: 50px;
-  color:#fff;
+  color: #fff;
 }
 .form-container .form-wrap .form-box {
   margin: 0px 0px 20px;
@@ -140,7 +142,7 @@ export default {
   border-radius: 5px;
   color: #fff;
 }
-span{
+span {
   color: #3d3a3a;
 }
 </style>
