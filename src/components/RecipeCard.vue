@@ -1,21 +1,27 @@
 <template>
   <div class="col">
-    <div style="width:400px" class="card">
-      <img :src="info" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This is a longer card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </p>
+    <div style="width:325px" class="card text-center">
+      <div class="card-header text-muted">
+        {{ info.name }}</div>
+      <img :src="info.url" class="card-img-top" />
+      <div class="card-body p-0">
+        <div class="card-footer text-muted">{{ postedFromNow }}</div>
+        <div class="card-footer">{{ info.description }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   props: ["info"],
   name: "RecipeCard",
+  computed: {
+    postedFromNow() {
+      return  moment(this.info.time).fromNow();
+    },
+  },
 };
 </script>
