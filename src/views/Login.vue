@@ -12,6 +12,7 @@
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="E-mail"
+              @keyup.enter="submit, login()"
             />
           </div>
           <div class="form-group mb-3">
@@ -21,6 +22,7 @@
               class="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
+              @keyup.enter="submit, login()"
             />
           </div>
           <input
@@ -50,7 +52,11 @@ export default {
     };
   },
   methods: {
-    login() {
+    submit(e) {
+      e.preventDefault();
+    },
+      
+      login() {
       console.log("login... " + this.username);
 
       firebase

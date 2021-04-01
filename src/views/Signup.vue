@@ -12,6 +12,7 @@
             placeholder="E-mail"
             required
             v-model="username"
+            @keyup.enter="submit, signup()"
           />
           <span v-if="msg.email">{{ msg.email }}</span>
         </div>
@@ -23,6 +24,7 @@
             class="form-control"
             placeholder="Full Name"
             v-model="fullname"
+            @keyup.enter="submit, signup()"
           />
         </div>
         <div class="form-group mb-3">
@@ -33,17 +35,18 @@
             placeholder="Password"
             v-model="password"
             required
+            @keyup.enter="submit, signup()"
           />
           <span v-if="msg.password">{{ msg.password }}</span>
         </div>
         <input
           type="button"
           class="btn btn-primary btn-lg"
-          @click="signup"
+          @click="signup, submit"
           value="Sign Up"
         />
         <div class="signup-link">
-          Already have an account? <a href="#">Log in</a>
+          Already have an account? <a href="Login">Log in</a>
         </div>
       </form>
     </div>
@@ -92,6 +95,10 @@ export default {
       } else {
         this.msg["password"] = "";
       }
+    },
+
+     submit(e) {
+      e.preventDefault();
     },
 
     signup() {
