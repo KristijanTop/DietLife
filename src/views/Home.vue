@@ -39,15 +39,9 @@ export default {
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
-      let newCards = [];
 
-      for (let card of this.cards) {
-        if (card.name.indexOf(termin) >= 0) {
-          newCards.push(card);
-        }
-      }
-
-      return newCards;
+      return this.cards.filter((card) => card.name.includes(termin));
+      
     },
   },
   mounted() {
