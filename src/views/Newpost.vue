@@ -15,22 +15,28 @@
         <textarea
           v-model="newImageDescription"
           id="imageDescription"
-          cols="30"
+          cols="25"
           rows="5"
           placeholder="Description"
           required
         ></textarea>
       </div>
-      <div class="form">
+      <div class="form-box">
         <input
           v-model="newImageUrL"
           id="imageUrl"
           type="text"
-          placeholder="Image URL"
+          placeholder="Please insert image URL or Upload image"
           required
         />
-        <span><b> or </b></span>
-        <input type="file" accept="image/*" />
+      </div>
+      <div class="form-box">
+         <croppa 
+         :width="350" 
+         :height="350" 
+         placeholder='Upload Image...' 
+         v-model="imageReference">
+         </croppa>
       </div>
       <div class="form-submit">
         <input type="submit" value="Publish" />
@@ -49,6 +55,7 @@ export default {
       newImageRecipe: "",
       newImageDescription: "",
       newImageUrL: "",
+      imageReference: null,
     };
   },
 
@@ -94,7 +101,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80vh;
+  height: 133vh;
 }
 .form-container .form-wrap {
   width: 70%;
@@ -111,26 +118,19 @@ export default {
   color: #fff;
 }
 .form-container .form-wrap .form-box {
-  margin: 0px 0px 20px;
+  margin: 0px 0px 15px;
 }
 .form-container .form-wrap .form-box input[type="text"] {
   padding: 4px 9px;
   width: 100%;
-  border: 1px solid #b389eb;
+  border: 1px solid #000000;
   border-radius: 7px;
 }
-.form-container .form-wrap .form input[type="text"] {
-  padding: 4px 9px;
-  width: 50%;
-  border: 1px solid #b389eb;
-  border-radius: 7px;
-}
-
 .form-container .form-wrap .form-box textarea {
   width: 100%;
   height: 100px;
   padding: 4px 9px;
-  border: 1px solid #b389eb;
+  border: 1px solid #000000;
   border-radius: 7px;
 }
 .form-container .form-wrap .form-submit {
@@ -147,7 +147,7 @@ export default {
   border-radius: 5px;
   color: #fff;
 }
-span {
-  color: #3d3a3a;
-}
+//span {
+  //color: #3d3a3a;
+
 </style>
