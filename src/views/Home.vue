@@ -3,12 +3,13 @@
     style="margin-top:25px"
     class="row row-cols-auto g-4 justify-content-center"
   >
-    <recipe-card v-for="card in cards" :key="card.id" :info="card" />
+    <recipe-card v-for="card in filteredCards" :key="card.id" :info="card" />
   </div>
 </template>
 
 <script>
 import RecipeCard from "@/components/RecipeCard.vue";
+import store from "@/store";
 import { db } from "@/firebase";
 
 //cards = [
@@ -32,7 +33,16 @@ export default {
   data: function() {
     return {
       cards: [],
+      store,
     };
+  },
+  computed: {
+    filteredCards() {
+      let termin = this.store.searchTerm;
+
+      return this.cards.filter((card) => card.name.includes(termin));
+      
+    },
   },
   mounted() {
     this.getPosts();
@@ -50,7 +60,6 @@ export default {
           this.cards = [];
           query.forEach((doc) => {
             const data = doc.data();
-            
 
             this.cards.push({
               id: doc.id,
