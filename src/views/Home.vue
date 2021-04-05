@@ -63,6 +63,9 @@ export default {
 
             this.cards.push({
               id: doc.id,
+              carbohydrates: data.carbohydrates,
+              fat: data.fat,
+              proteins: data.proteins,
               name: data.name,
               time: data.posted_at,
               description: data.desc,
