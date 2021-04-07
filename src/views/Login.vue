@@ -12,18 +12,27 @@
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="E-mail"
+              required
               @keyup.enter="submit, login()"
             />
+            <span v-if="msg.email">{{ msg.email }}</span>
           </div>
           <div class="form-group mb-3">
             <input
-              type="password"
+              :type="showpassword ? 'text' : 'password'"
               v-model="password"
               class="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
+              required
               @keyup.enter="submit, login()"
             />
+            <v-btn @click="showpassword = !showpassword">
+              <img
+              src="@/assets/eye.png"
+              />
+            </v-btn>
+            <span v-if="msg.password">{{ msg.password }}</span>
           </div>
           <input
             type="button"
@@ -47,16 +56,49 @@ export default {
   name: "login",
   data() {
     return {
+      showpassword : true,
       username: "",
       password: "",
+      msg: [],
     };
   },
+
+  watch: {
+    password(value) {
+      this.password = value;
+      this.validatePassword(value);
+    },
+    username(value) {
+      this.email = value;
+      this.validateEmail(value);
+    },
+  },
+
   methods: {
+
+validateEmail(value) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+        this.msg["email"] = "";
+      } else {
+        this.msg["email"] = "Invalid Email Address";
+      }
+    },
+
+    validatePassword(value) {
+      let difference = 6 - value.length;
+      if (value.length < 6) {
+        this.msg["password"] =
+          "Must be 6 characters! " + difference + " characters left";
+      } else {
+        this.msg["password"] = "";
+      }
+    },
+
     submit(e) {
       e.preventDefault();
     },
-      
-      login() {
+
+    login() {
       console.log("login... " + this.username);
 
       firebase
@@ -103,5 +145,14 @@ export default {
   text-align: center;
   margin-top: 20px;
   color: #262626;
+}
+.container .icon {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.container .icon-base {
+  width: 22;
+  height: 22;
 }
 </style>

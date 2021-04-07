@@ -29,7 +29,7 @@
         </div>
         <div class="form-group mb-3">
           <input
-            type="password"
+            :type="showpassword ? 'text' : 'password'"
             name="Password"
             class="form-control"
             placeholder="Password"
@@ -37,6 +37,11 @@
             required
             @keyup.enter="submit, signup()"
           />
+          <v-btn @click="showpassword = !showpassword">
+              <img
+              src="@/assets/eye.png"
+              />
+            </v-btn>
           <span v-if="msg.password">{{ msg.password }}</span>
         </div>
         <input
@@ -60,6 +65,7 @@ export default {
   name: "Signup",
   data() {
     return {
+      showpassword : true,
       username: "",
       msg: [],
       fullname: "",
