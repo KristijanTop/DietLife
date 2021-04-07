@@ -39,15 +39,9 @@ export default {
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
-      let newCards = [];
 
-      for (let card of this.cards) {
-        if (card.name.indexOf(termin) >= 0) {
-          newCards.push(card);
-        }
-      }
-
-      return newCards;
+      return this.cards.filter((card) => card.name.includes(termin));
+      
     },
   },
   mounted() {
@@ -69,6 +63,9 @@ export default {
 
             this.cards.push({
               id: doc.id,
+              carbohydrates: data.carbohydrates,
+              fat: data.fat,
+              proteins: data.proteins,
               name: data.name,
               time: data.posted_at,
               description: data.desc,

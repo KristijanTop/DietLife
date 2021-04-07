@@ -11,7 +11,15 @@
           class="d-inline-block align-top"
         />
       </a>
-
+      <form v-if="store.currentUser" class="d-flex">
+        <input
+          v-model="store.searchTerm"
+          class="form-control me-2"
+          type="search"
+          placeholder="Search recipes"
+          aria-label="Search"
+        />
+      </form>
       <button
         class="navbar-toggler"
         type="button"
@@ -25,7 +33,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="nav-buttons">
+        <div style="" class="nav-buttons">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li v-if="store.currentUser" class="nav-item">
               <router-link
@@ -63,16 +71,6 @@
             </li>
           </ul>
         </div>
-
-        <form v-if="store.currentUser" class="d-flex">
-          <input
-            v-model="store.searchTerm"
-            class="form-control me-2"
-            type="search"
-            placeholder="Search recipes"
-            aria-label="Search"
-          />
-        </form>
       </div>
     </nav>
     <router-view />
