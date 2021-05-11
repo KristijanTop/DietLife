@@ -2,7 +2,7 @@
   <div class="col">
     <div style="width:325px" class="card text-center">
       <div class="card-header text-muted">
-        {{ info.name }}
+        <strong>{{ info.name }}</strong>
       </div>
       <div style="height:355px">
         <img :src="info.url" class="card-img center" />
@@ -20,9 +20,11 @@
           </div>
         </div>
         <div class="card-footer text-muted">{{ postedFromNow }}</div>
-        <div class="card-footer">{{ info.description }}</div>
+        <div class="card-footer">
+        <button type="button" @click="$emit('click')" class="btn btn-primary">See Recipe</button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ import moment from "moment";
 
 export default {
   props: ["info"],
-  name: "RecipeCard",
+  name: "RecipeCard", 
   computed: {
     postedFromNow() {
       return moment(this.info.time).fromNow();

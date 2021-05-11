@@ -19,7 +19,6 @@
                 v-model="newImageDescription"
                 class="form-control mb-3"
                 placeholder="Description"
-                maxlength="250"
                 required
               ></textarea>
               <div class="row justify-content-center">

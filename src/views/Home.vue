@@ -1,13 +1,19 @@
 <template>
+<div>
+  <modal v-if="modalVisible" @close="modalVisible = false" :data="modalData"/>
+  
   <div
     style="margin-top:25px"
     class="row row-cols-auto g-4 justify-content-center"
   >
-    <recipe-card v-for="card in filteredCards" :key="card.id" :info="card" />
+    <recipe-card v-for="card in filteredCards" :key="card.id" :info="card" @click="openModal(card)"/>
   </div>
+</div>
+
 </template>
 
 <script>
+import Modal from "@/components/Modal.vue";
 import RecipeCard from "@/components/RecipeCard.vue";
 import store from "@/store";
 import { db } from "@/firebase";
@@ -34,6 +40,8 @@ export default {
     return {
       cards: [],
       store,
+      modalVisible: false,
+      modalData: null,
     };
   },
   computed: {
@@ -74,9 +82,14 @@ export default {
           });
         });
     },
+    openModal(data) {
+      this.modalData = data
+      this.modalVisible = true
+    },
   },
   components: {
     RecipeCard,
+    Modal,
   },
 };
 </script>
