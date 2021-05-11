@@ -12,6 +12,7 @@
             placeholder="E-mail"
             required
             v-model="username"
+            @keyup.enter="submit, signup()"
           />
           <span v-if="msg.email">{{ msg.email }}</span>
         </div>
@@ -23,23 +24,30 @@
             class="form-control"
             placeholder="Full Name"
             v-model="fullname"
+            @keyup.enter="submit, signup()"
           />
         </div>
         <div class="form-group mb-3">
           <input
-            type="password"
+            :type="showpassword ? 'text' : 'password'"
             name="Password"
             class="form-control"
             placeholder="Password"
             v-model="password"
             required
+            @keyup.enter="submit, signup()"
           />
+          <v-btn @click="showpassword = !showpassword">
+              <img
+              src="@/assets/eye.png"
+              />
+            </v-btn>
           <span v-if="msg.password">{{ msg.password }}</span>
         </div>
         <input
           type="button"
           class="btn btn-primary btn-lg"
-          @click="signup"
+          @click="signup, submit"
           value="Sign Up"
         />
         <div class="signup-link">
@@ -57,6 +65,7 @@ export default {
   name: "Signup",
   data() {
     return {
+      showpassword : true,
       username: "",
       msg: [],
       fullname: "",
@@ -92,6 +101,10 @@ export default {
       } else {
         this.msg["password"] = "";
       }
+    },
+
+     submit(e) {
+      e.preventDefault();
     },
 
     signup() {
