@@ -3,7 +3,7 @@
   <modal v-if="modalVisible" @close="modalVisible = false" :data="modalData"/>
   
   <div
-    style="margin-top:25px"
+    style="margin-top:15px"
     class="row row-cols-auto g-4 justify-content-center"
   >
     <recipe-card v-for="card in filteredCards" :key="card.id" :info="card" @click="openModal(card)"/>
