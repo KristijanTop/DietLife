@@ -15,11 +15,11 @@
               required
               @keyup.enter="submit, login()"
             />
-            <span v-if="msg.email">{{ msg.email }}</span>
+            <span v-if="msg.email" class="span">{{ msg.email }}</span>
           </div>
           <div class="form-group mb-3">
             <input
-              :type="showpassword ? 'text' : 'password'"
+              :type="visability"
               v-model="password"
               class="form-control"
               id="exampleInputPassword1"
@@ -27,12 +27,18 @@
               required
               @keyup.enter="submit, login()"
             />
-            <v-btn @click="showpassword = !showpassword">
-              <img
-              src="@/assets/eye.png"
-              />
-            </v-btn>
-            <span v-if="msg.password">{{ msg.password }}</span>
+            <a
+              @click="showpassword()"
+              v-if="visability == 'password'"
+              class="eye"
+            >
+              <img src="@/assets/visibility.png" class="eye" />
+            </a>
+            <a @click="hidepassword()" v-if="visability == 'text'" class="eye">
+              <img src="@/assets/invisible.png" class="eye" />
+            </a>
+            <br />
+            <span v-if="msg.password" class="span">{{ msg.password }}</span>
           </div>
           <input
             type="button"
@@ -56,7 +62,7 @@ export default {
   name: "login",
   data() {
     return {
-      showpassword : true,
+      visability: "password",
       username: "",
       password: "",
       msg: [],
@@ -75,8 +81,7 @@ export default {
   },
 
   methods: {
-
-validateEmail(value) {
+    validateEmail(value) {
       if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
         this.msg["email"] = "";
       } else {
@@ -93,6 +98,12 @@ validateEmail(value) {
         this.msg["password"] = "";
       }
     },
+    showpassword() {
+      this.visability = "text";
+    },
+    hidepassword() {
+      this.visability = "password";
+    },
 
     submit(e) {
       e.preventDefault();
@@ -107,8 +118,25 @@ validateEmail(value) {
         .then((result) => {
           console.log("Uspiješna prijava!", result);
         })
-        .catch(function(e) {
-          console.error("Neuspiješna prijava!", e);
+        .catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === "auth/wrong-password") {
+            alert("Wrong password!");
+            console.log("wrong password");
+          } else {
+            if (errorCode === "auth/user-not-found") {
+              alert("User with given email is not found. Try to Sign up.");
+            } else {
+              if (errorCode === "auth/user-disabled") {
+                alert("This account has been disabled!");
+              } else {
+                alert(errorMessage);
+              }
+            }
+            console.log("error");
+          }
+          console.error("Neuspiješna prijava!", error);
         });
     },
   },
@@ -154,5 +182,15 @@ validateEmail(value) {
 .container .icon-base {
   width: 22;
   height: 22;
+}
+.span {
+  padding-top: 0px;
+  margin-top: 0px;
+  font-size: 14px;
+  color: red;
+}
+.eye {
+  max-width: 7%;
+  max-height: 7%;
 }
 </style>
