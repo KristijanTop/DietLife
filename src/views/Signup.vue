@@ -37,17 +37,23 @@
             required
             @keyup.enter="submit, signup()"
           />
-          <v-btn @click="showpassword = !showpassword">
-              <img
-              src="@/assets/eye.png"
-              />
-            </v-btn>
-          <span v-if="msg.password">{{ msg.password }}</span>
+          <a
+            @click="showpassword()"
+            v-if="visability == 'password'"
+            class="eye"
+          >
+            <img src="@/assets/visibility.png" class="eye" />
+          </a>
+          <a @click="hidepassword()" v-if="visability == 'text'" class="eye">
+            <img src="@/assets/invisible.png" class="eye" />
+          </a>
+          <br />
+          <span v-if="msg.password" class="span">{{ msg.password }}</span>
         </div>
         <input
           type="button"
           class="btn btn-primary btn-lg"
-          @click="signup, submit"
+          @click="signup(), submit"
           value="Sign Up"
         />
         <div class="signup-link">
@@ -65,7 +71,7 @@ export default {
   name: "Signup",
   data() {
     return {
-      showpassword : true,
+      visability: "password",
       username: "",
       msg: [],
       fullname: "",
@@ -102,8 +108,13 @@ export default {
         this.msg["password"] = "";
       }
     },
-
-     submit(e) {
+    showpassword() {
+      this.visability = "text";
+    },
+    hidepassword() {
+      this.visability = "password";
+    },
+    submit(e) {
       e.preventDefault();
     },
 
@@ -115,10 +126,21 @@ export default {
         .createUserWithEmailAndPassword(this.username, this.password)
         .then((result) => {
           alert("Uspješna registracija", result);
-          
         })
         .catch(function(error) {
           console.log("Došlo je do greške", error);
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode == "auth/weak-password") {
+            alert("The password is too weak.");
+          } else {
+            if (errorCode == "auth/email-already-in-use") {
+              alert("This email is already in use")
+            } else {
+              alert(errorMessage);
+            }
+          }
+          console.log(error);
         });
       console.log("Nastavak");
     },
@@ -132,14 +154,15 @@ export default {
   margin: 5% auto 0;
   background: #fff;
   border-radius: 15px;
-  box-shadow: 10px 15px 15px rgba(54, 115, 228, 0.925);
+  box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .container form {
   padding: 10px 30px 25px 30px;
 }
 .container .tittle {
-  font-family: 'Yatra One', serif;
   color: rgba(25, 106, 255, 0.925);
   font-size: 40px;
   margin-top: 20px;
@@ -165,10 +188,14 @@ export default {
 .container form .signup-link a:hover {
   text-decoration: underline;
 }
-span {
+.span {
   padding-top: 0px;
   margin-top: 0px;
-  font-size: 12px;
+  font-size: 14px;
   color: red;
+}
+.eye {
+  max-width: 7%;
+  max-height: 7%;
 }
 </style>
