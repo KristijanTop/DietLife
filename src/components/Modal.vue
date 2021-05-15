@@ -10,7 +10,10 @@
             <h1>{{data.name}}</h1>
             </div>
             <div class="title">
-              Carbohydrates: {{data.carbohydrates}} | Fat: {{data.fat}} | Protein: {{data.proteins}}  
+              Author: {{data.user}}
+            </div>
+            <div class="title">
+              Carbohydrates: {{data.carbohydrates}} | Fat: {{data.fat}} | Protein: {{data.proteins}}
             </div>      
           </div>
           <div class="modal-body">
@@ -66,7 +69,7 @@ export default {
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
@@ -80,7 +83,7 @@ export default {
 .modal-body {
   margin: 20px 0;
   height: 90%;
-  max-height: 300px;
+  max-height: 275px;
   overflow: auto;
   text-align: justify;
 }

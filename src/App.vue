@@ -2,38 +2,32 @@
   <div id="app">
     <nav id="nav" class="navbar navbar-expand-lg navbar-light sticky-top">
       <!-- Image and text -->
+      <div class="container-fluid">
+        <router-link to="/" class="navbar-brand" href="#">
+          <img
+            src="@/assets/logo-antic.png"
+            alt="DietLife-logo"
+            height="50"
+            class="d-inline-block align-top"
+          />
+        </router-link>
 
-      <a class="navbar-brand" href="#">
-        <img
-          src="@/assets/logo-antic.png"
-          alt="DietLife-logo"
-          height="50"
-          class="d-inline-block align-top"
-        />
-      </a>
-      <form v-if="store.currentUser" class="d-flex">
-        <input
-          v-model="store.searchTerm"
-          class="form-control me-2"
-          type="search"
-          placeholder="Search recipes"
-          aria-label="Search"
-        />
-      </form>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div style="" class="nav-buttons">
+        <div
+          class="collapse navbar-collapse nav-buttons"
+          id="navbarSupportedContent"
+        >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li v-if="store.currentUser" class="nav-item">
               <router-link
@@ -50,9 +44,20 @@
                 to="/Newpost"
                 class="nav-link"
                 href="@/views/Newpost.vue"
-                >New post</router-link
+                >New Recipe</router-link
               >
             </li>
+
+            <form v-if="store.currentUser" class="d-flex">
+              <input
+                v-model="store.searchTerm"
+                class="form-control me-2"
+                type="search"
+                placeholder="Search recipes"
+                aria-label="Search"
+              />
+            </form>
+
             <li v-if="!store.currentUser" class="nav-item">
               <router-link
                 to="/Signup"
@@ -61,13 +66,42 @@
                 >Sign up</router-link
               >
             </li>
+
             <li v-if="!store.currentUser" class="nav-item">
               <router-link to="/Login" class="nav-link" href="@/views/Login.vue"
                 >Login</router-link
               >
             </li>
-            <li v-if="store.currentUser" class="nav-item">
-              <a href="#" @click.prevent="logout()" class="nav-link">Log out</a>
+          </ul>
+          <ul class="navbar-nav">
+            <li v-if="store.currentUser" class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ store.currentUser }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <router-link
+                    to="/MyRecipes"
+                    class="dropdown-item"
+                    href="@/views/MyRecipes.vue"
+                    >My Recipes</router-link
+                  >
+                </li>
+                <li><a class="dropdown-item" href="#">Saved Recipes</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a href="#" @click.prevent="logout()" class="dropdown-item"
+                    >Log out</a
+                  >
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -147,5 +181,9 @@ export default {
   .nav-buttons {
     padding: 12px;
   }
+}
+
+.dropdown-toggle::marker {
+  display: none !important;
 }
 </style>

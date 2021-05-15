@@ -20,7 +20,7 @@ import store from "@/store";
 import { db } from "@/firebase";
 
 export default {
-  name: "home",
+  name: "MyRecipes",
   data: function() {
     return {
       cards: [],
@@ -47,7 +47,8 @@ export default {
       console.log("firebase dohvat...");
 
       db.collection("posts")
-        .orderBy("posted_at", "desc")
+        .where("email", "==", store.currentUser)
+        //.orderBy("posted_at", "desc")
         .get()
         .then((query) => {
           this.cards = [];

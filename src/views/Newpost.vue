@@ -10,6 +10,7 @@
               v-model="newImageRecipe"
               class="form-control mb-3"
               placeholder="Recipe Name"
+              maxlength="40"
               required
             />
             <div class="form">
@@ -72,7 +73,7 @@
                 </div>
                 <div class="form text-center">
                   <button type="submit" class="btn btn-primary ml-2">
-                    Post image
+                    Add Recipe
                   </button>
                 </div>
               </div>
