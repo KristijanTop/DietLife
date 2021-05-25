@@ -87,7 +87,7 @@
               >
                 {{ store.currentUser }}
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li>
                   <router-link
                     to="/MyRecipes"
@@ -199,10 +199,7 @@ export default {
   .nav-buttons {
     padding: 12px;
   }
-  .dropdown-menu {
-    width: 100%;
-  }
-
+  
   .search-recipe {
 
  

@@ -1,5 +1,8 @@
 <template>
 <div>
+
+  <span class="message">{{message}}</span>
+
   <modal v-if="modalVisible" @close="modalVisible = false" :data="modalData"/>
   
   <div
@@ -27,6 +30,7 @@ export default {
       store,
       modalVisible: false,
       modalData: null,
+      message: "",
     };
   },
   computed: {
@@ -48,10 +52,14 @@ export default {
 
       db.collection("posts")
         .where("email", "==", store.currentUser)
-        //.orderBy("posted_at", "desc")
+        .orderBy("posted_at", "desc")
         .get()
         .then((query) => {
           this.cards = [];
+          if (query.empty) {
+            console.log("empty")
+            this.message = "You didn't add any recipes yet!";
+          }
           query.forEach((doc) => {
             const data = doc.data();
 
@@ -80,3 +88,16 @@ export default {
   },
 };  
 </script>
+
+<style>
+
+.message {
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+</style>
