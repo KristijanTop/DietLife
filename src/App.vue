@@ -115,7 +115,7 @@
 
 <script>
 import store from "@/store";
-import { firebase } from "@/firebase";
+import { firebase, db } from "@/firebase";
 import router from "@/router";
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -123,6 +123,22 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     // User is signed in.
     console.log("...", user.email);
+    var docRef = db.collection("profiles").doc(user.uid);
+
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data().name);
+          store.currentUser = doc.data().name;
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
     store.currentUser = user.email;
 
     if (!currentRoute.meta.needsUser) {

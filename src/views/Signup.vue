@@ -14,7 +14,7 @@
             v-model="username"
             @keyup.enter="submit, signup()"
           />
-          <span v-if="msg.email">{{ msg.email }}</span>
+          <span v-if="msg.email" class="span">{{ msg.email }}</span>
         </div>
         <div class="form-group mb-3">
           <input
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group mb-3">
           <input
-            :type="showpassword ? 'text' : 'password'"
+            :type="visability"
             name="Password"
             class="form-control"
             placeholder="Password"
@@ -66,6 +66,7 @@
 
 <script>
 import { firebase } from "@/firebase";
+import { db } from "@/firebase";
 
 export default {
   name: "Signup",
@@ -124,8 +125,19 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.username, this.password)
-        .then((result) => {
-          alert("Uspješna registracija", result);
+        .then((user) => {
+          db.collection("profiles")
+            .doc(user.user.uid)
+            .set({
+              name: this.fullname,
+            })
+            .then(function() {
+              console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+              console.error("Error writing document: ", error);
+            });
+          alert("Uspješna registracija", user);
         })
         .catch(function(error) {
           console.log("Došlo je do greške", error);
@@ -135,7 +147,7 @@ export default {
             alert("The password is too weak.");
           } else {
             if (errorCode == "auth/email-already-in-use") {
-              alert("This email is already in use")
+              alert("This email is already in use");
             } else {
               alert(errorMessage);
             }
