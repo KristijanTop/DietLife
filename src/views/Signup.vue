@@ -158,6 +158,11 @@ export default {
   text-align: center;
   justify-content: center;
   align-items: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .container form {
   padding: 10px 30px 25px 30px;

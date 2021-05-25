@@ -39,7 +39,7 @@
               >
             </li>
 
-            <li v-if="store.currentUser" class="nav-item">
+            <li v-if="store.currentUser" class="nav-item" style="margin-right: 12px;">
               <router-link
                 to="/Newpost"
                 class="nav-link"
@@ -48,7 +48,8 @@
               >
             </li>
 
-            <form v-if="store.currentUser" class="d-flex">
+            <li class="nav-item search-recipe">
+            <form v-if="store.currentUser">
               <input
                 v-model="store.searchTerm"
                 class="form-control me-2"
@@ -57,7 +58,8 @@
                 aria-label="Search"
               />
             </form>
-
+          
+            </li>
             <li v-if="!store.currentUser" class="nav-item">
               <router-link
                 to="/Signup"
@@ -181,9 +183,16 @@ export default {
   .nav-buttons {
     padding: 12px;
   }
+  .dropdown-menu {
+    width: 100%;
+  }
+
+  .search-recipe {
+
+ 
+  }
+
+
 }
 
-.dropdown-toggle::marker {
-  display: none !important;
-}
 </style>

@@ -144,6 +144,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 #login {
   width: 380px;
   margin: 5% auto 0;
@@ -151,6 +152,11 @@ export default {
   border-radius: 15px;
   box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .container form {
   padding: 10px 30px 25px 30px;
