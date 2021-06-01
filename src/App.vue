@@ -39,7 +39,11 @@
               >
             </li>
 
-            <li v-if="store.currentUser" class="nav-item" style="margin-right: 12px;">
+            <li
+              v-if="store.currentUser"
+              class="nav-item"
+              style="margin-right: 12px;"
+            >
               <router-link
                 to="/Newpost"
                 class="nav-link"
@@ -49,16 +53,15 @@
             </li>
 
             <li class="nav-item search-recipe">
-            <form v-if="store.currentUser">
-              <input
-                v-model="store.searchTerm"
-                class="form-control me-2"
-                type="search"
-                placeholder="Search recipes"
-                aria-label="Search"
-              />
-            </form>
-          
+              <form v-if="store.currentUser">
+                <input
+                  v-model="store.searchTerm"
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Search recipes"
+                  aria-label="Search"
+                />
+              </form>
             </li>
             <li v-if="!store.currentUser" class="nav-item">
               <router-link
@@ -83,25 +86,30 @@
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{ store.currentUser }}
+                aria-expanded="false">
+                {{ store.currentUser.name}}
               </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdown">
                 <li>
                   <router-link
                     to="/MyRecipes"
                     class="dropdown-item"
                     href="@/views/MyRecipes.vue"
-                    >My Recipes</router-link
-                  >
+                    >My Recipes</router-link>
                 </li>
-                <li><a class="dropdown-item" href="#">Saved Recipes</a></li>
+                <li>
+                  <router-link
+                    to="/Favorites"
+                    class="dropdown-item"
+                    href="@/views/Favorites.vue"
+                    >Favorites</router-link>
+                </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a href="#" @click.prevent="logout()" class="dropdown-item"
-                    >Log out</a
-                  >
+                    >Log out</a>
                 </li>
               </ul>
             </li>
@@ -130,7 +138,7 @@ firebase.auth().onAuthStateChanged((user) => {
       .then((doc) => {
         if (doc.exists) {
           console.log("Document data:", doc.data().name);
-          store.currentUser = doc.data().name;
+          store.currentUser = doc.data();
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -199,13 +207,5 @@ export default {
   .nav-buttons {
     padding: 12px;
   }
-  
-  .search-recipe {
-
- 
-  }
-
-
 }
-
 </style>

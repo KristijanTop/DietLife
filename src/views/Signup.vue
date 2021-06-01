@@ -130,6 +130,7 @@ export default {
             .doc(user.user.uid)
             .set({
               name: this.fullname,
+              id: user.user.uid,
             })
             .then(function() {
               console.log("Document successfully written!");

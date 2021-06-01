@@ -63,7 +63,7 @@ export default {
               time: data.posted_at,
               description: data.desc,
               url: data.url,
-              user: data.email,
+              authorName: data.authorName,
             });
           });
         });
