@@ -131,7 +131,8 @@ export default {
     postNewImage() {
       this.imageReference.generateBlob((blobData) => {
         console.log(blobData);
-        let imageName = store.currentUser + "/" + Date.now() + ".png";
+        let imageName = store.currentUser.name + "/" + this.newImageRecipe + ".png";
+        console.log(imageName)
 
         storage
           .ref(imageName)
@@ -142,6 +143,7 @@ export default {
               .getDownloadURL()
               .then((url) => {
                 console.log("Link", url);
+                console.log(store.currentUser.id);
 
                 const imageFat = this.newImageFat;
                 const imageCarbohydrates = this.newImageCarbohydrates;
@@ -157,7 +159,8 @@ export default {
                     url: url,
                     desc: imageDescription,
                     name: imageRecipe,
-                    email: store.currentUser,
+                    authorName: store.currentUser.name,
+                    authorId: store.currentUser.id,
                     posted_at: Date.now(),
                   })
                   .then((doc) => {

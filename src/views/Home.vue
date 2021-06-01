@@ -68,6 +68,7 @@ export default {
               url: data.url,
               user: data.email,
               diets: data.diets,
+              authorName: data.authorName,
             });
           });
         });

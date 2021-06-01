@@ -313,7 +313,8 @@ export default {
                       url: url,
                       desc: imageDescription,
                       name: imageRecipe,
-                      email: store.currentUser,
+                      authorName: store.currentUser.name,
+                      authorId: store.currentUser.id,
                       posted_at: Date.now(),
                       diets: diets,
                     })

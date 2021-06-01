@@ -113,15 +113,19 @@
                     to="/MyRecipes"
                     class="dropdown-item"
                     href="@/views/MyRecipes.vue"
-                    >My Recipes</router-link
-                  >
+                    >My Recipes</router-link>
                 </li>
-                <li><a class="dropdown-item" href="#">Saved Recipes</a></li>
+                <li>
+                  <router-link
+                    to="/Favorites"
+                    class="dropdown-item"
+                    href="@/views/Favorites.vue"
+                    >Favorites</router-link>
+                </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a href="#" @click.prevent="logout()" class="dropdown-item"
-                    >Log out</a
-                  >
+                    >Log out</a>
                 </li>
               </ul>
             </li>
