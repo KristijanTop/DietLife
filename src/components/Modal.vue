@@ -113,6 +113,8 @@ export default {
           console.log("Document successfully deleted!");
           this.remove=false;
           this.favbutton();
+          this.$emit("close");
+          this.$root.$emit("Favorites");
         })
         .catch((error) => {
           console.error("Error removing document: ", error);

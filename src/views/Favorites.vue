@@ -45,6 +45,9 @@ export default {
     },
   },
   mounted() {
+  this.$root.$on('Favorites', () => {
+            this.getPosts()
+        })
     this.getPosts();
   },
   methods: {
