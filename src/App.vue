@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <new-recipe v-if="modalVisible" @close="modalVisible = false" />
+
     <nav id="nav" class="navbar navbar-expand-lg navbar-light sticky-top">
       <!-- Image and text -->
       <div class="container-fluid">
@@ -39,27 +41,42 @@
               >
             </li>
 
-            <li v-if="store.currentUser" class="nav-item" style="margin-right: 12px;">
-              <router-link
-                to="/Newpost"
-                class="nav-link"
-                href="@/views/Newpost.vue"
-                >New Recipe</router-link
-              >
+            <li
+              v-if="store.currentUser"
+              class="nav-item"
+              style="margin-right: 5px;"
+            >
+              <button @click="openModal()" class="nav-link new-recipe-button">
+                New Recipe
+              </button>
+            </li>
+
+            <li v-if="store.currentUser" class="nav-item diet-select">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>All diets</option>
+                <option value="1">Ketogenic diet</option>
+                <option value="2">Paleo diet</option>
+                <option value="3">Vegan diet</option>
+                <option value="4">GI diet</option>
+                <option value="5">Low fat</option>
+                <option value="6">Mediterranean</option>
+                <option value="7">Raw food</option>
+                <option value="8">Flexible</option>
+              </select>
             </li>
 
             <li class="nav-item search-recipe">
-            <form v-if="store.currentUser">
-              <input
-                v-model="store.searchTerm"
-                class="form-control me-2"
-                type="search"
-                placeholder="Search recipes"
-                aria-label="Search"
-              />
-            </form>
-          
+              <form v-if="store.currentUser">
+                <input
+                  v-model="store.searchTerm"
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Search recipes"
+                  aria-label="Search"
+                />
+              </form>
             </li>
+
             <li v-if="!store.currentUser" class="nav-item">
               <router-link
                 to="/Signup"
@@ -85,9 +102,12 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                {{ store.currentUser }}
+                {{ store.currentUser.name }}
               </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdown"
+              >
                 <li>
                   <router-link
                     to="/MyRecipes"
@@ -117,6 +137,7 @@
 import store from "@/store";
 import { firebase, db } from "@/firebase";
 import router from "@/router";
+import NewRecipe from "@/components/NewRecipe";
 
 firebase.auth().onAuthStateChanged((user) => {
   const currentRoute = router.currentRoute;
@@ -130,7 +151,7 @@ firebase.auth().onAuthStateChanged((user) => {
       .then((doc) => {
         if (doc.exists) {
           console.log("Document data:", doc.data().name);
-          store.currentUser = doc.data().name;
+          store.currentUser = doc.data();
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -158,6 +179,7 @@ export default {
   data() {
     return {
       store,
+      modalVisible: false,
     };
   },
 
@@ -170,6 +192,13 @@ export default {
           this.$router.push({ name: "Login" });
         });
     },
+    openModal() {
+      this.modalVisible = true;
+    },
+  },
+
+  components: {
+    NewRecipe,
   },
 };
 </script>
@@ -199,13 +228,29 @@ export default {
   .nav-buttons {
     padding: 12px;
   }
-  
-  .search-recipe {
 
- 
+  .new-recipe-button {
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #2c3e50;
   }
 
+  .search-recipe {
+    margin-right: 15px;
+    max-width: 50%;
+  }
 
+  .diet-select {
+    margin-right: 15px;
+    margin-bottom: 5px;
+    max-width: 50%;
+  }
+
+  .dropdown-menu {
+    max-width:20%;
+  }
 }
-
 </style>

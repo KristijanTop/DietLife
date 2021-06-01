@@ -1,30 +1,29 @@
 <template>
- 
-<transition name="modal">
+  <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-
           <div class="modal-header">
             <div class="title">
-            <h1>{{data.name}}</h1>
+              <h1>{{ data.name }}</h1>
+            </div>
+            <div class="title">Author: {{ data.user }}</div>
+            <div class="title">
+              Carbohydrates: {{ data.carbohydrates }} | Fat: {{ data.fat }} |
+              Protein: {{ data.proteins }}
             </div>
             <div class="title">
-              Author: {{data.user}}
+              {{ data.diets }}
             </div>
-            <div class="title">
-              Carbohydrates: {{data.carbohydrates}} | Fat: {{data.fat}} | Protein: {{data.proteins}}
-            </div>      
           </div>
           <div class="modal-body">
             <slot name="body">
-              {{data.description}}
+              {{ data.description }}
             </slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-             
               <button class="modal-default-button" @click="$emit('close')">
                 Close
               </button>
@@ -34,8 +33,6 @@
       </div>
     </div>
   </transition>
-    
-   
 </template>
 
 <script>
@@ -118,5 +115,4 @@ export default {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-
 </style>

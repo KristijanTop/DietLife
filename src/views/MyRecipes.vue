@@ -42,6 +42,9 @@ export default {
     },
   },
   mounted() {
+    this.$root.$on('MyRecipes', () => {
+            this.getPosts()
+        })
     this.getPosts();
   },
   //firebase dohvat

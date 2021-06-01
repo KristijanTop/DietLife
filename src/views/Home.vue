@@ -38,6 +38,9 @@ export default {
     },
   },
   mounted() {
+    this.$root.$on('home', () => {
+            this.getPosts()
+        })
     this.getPosts();
   },
   //firebase dohvat
@@ -64,6 +67,7 @@ export default {
               description: data.desc,
               url: data.url,
               user: data.email,
+              diets: data.diets,
             });
           });
         });
