@@ -32,8 +32,13 @@ export default {
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
+      let selectedDiet = this.store.selectedDiet;
 
-      return this.cards.filter((card) => card.name.includes(termin));
+      if (selectedDiet == "All diets"){
+        return this.cards.filter((card) => card.name.includes(termin));
+      }
+      
+      return this.cards.filter((card) => card.name.includes(termin) && card.diets.includes(selectedDiet));
       
     },
   },

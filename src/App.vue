@@ -52,16 +52,16 @@
             </li>
 
             <li v-if="store.currentUser" class="nav-item diet-select">
-              <select class="form-select" aria-label="Default select example">
-                <option selected>All diets</option>
-                <option value="1">Ketogenic diet</option>
-                <option value="2">Paleo diet</option>
-                <option value="3">Vegan diet</option>
-                <option value="4">GI diet</option>
-                <option value="5">Low fat</option>
-                <option value="6">Mediterranean</option>
-                <option value="7">Raw food</option>
-                <option value="8">Flexible</option>
+              <select v-model="store.selectedDiet" class="form-select" aria-label="Default select example">
+                <option value="All diets">All diets</option>
+                <option value=" Ketogenic">Ketogenic diet</option>
+                <option value=" Paleo">Paleo diet</option>
+                <option value=" Vegan">Vegan diet</option>
+                <option value=" GI diet">GI diet</option>
+                <option value=" Low fat">Low fat</option>
+                <option value=" Mediterranean">Mediterranean</option>
+                <option value=" Raw food">Raw food</option>
+                <option value=" Flexible">Flexible</option>
               </select>
             </li>
 

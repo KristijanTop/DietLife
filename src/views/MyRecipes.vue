@@ -42,8 +42,13 @@ export default {
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
+      let selectedDiet = this.store.selectedDiet;
 
-      return this.cards.filter((card) => card.name.includes(termin));
+      if (selectedDiet == "All diets"){
+        return this.cards.filter((card) => card.name.includes(termin));
+      }
+      
+      return this.cards.filter((card) => card.name.includes(termin) && card.diets.includes(selectedDiet));
     },
   },
   mounted() {
@@ -79,6 +84,7 @@ export default {
                 time: data.posted_at,
                 description: data.desc,
                 url: data.url,
+                diets: data.diets,
                 authorName: data.authorName,
               });
             });

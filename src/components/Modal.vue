@@ -5,16 +5,14 @@
         <div class="modal-container">
           <div class="modal-header">
             <div class="title">
-              <h1>{{ data.name}}</h1>
+              <h1>{{ data.name }}</h1>
             </div>
             <div class="title">Author: {{ data.authorName }}</div>
             <div class="title">
               Carbohydrates: {{ data.carbohydrates }} | Fat: {{ data.fat }} |
               Protein: {{ data.proteins }}
             </div>
-            <div class="title">
-              {{ data.diets }}
-            </div>
+            <div class="title">Diets: {{ data.diets.toString() }}</div>
           </div>
           <div class="modal-body">
             <slot name="body">
@@ -25,7 +23,7 @@
           <div class="modal-footer">
             <slot name="footer">
               <button v-if="remove" @click="removeFromFav()">
-                Remove recepies
+                Remove from favorites
               </button>
               <button v-if="save" @click="addToFavorites()">
                 Add to Favorites
@@ -60,7 +58,6 @@ export default {
     this.favbutton();
   },
   methods: {
-
     favbutton() {
       var checkpost = db.collection("Favoriteposts");
       checkpost
@@ -70,7 +67,7 @@ export default {
         .then((querySnapshot) => {
           if (querySnapshot.empty) {
             this.save = true;
-            console.log("This recipe is not on yours favorite list.");
+            console.log("This recipe is not on your favorite list.");
           }
           querySnapshot.forEach((doc) => {
             console.log(doc.id, "=>", doc.data());
@@ -93,11 +90,12 @@ export default {
           authorName: this.data.authorName,
           description: this.data.description,
           time: this.data.time,
+          diets: this.data.diets,
         })
         .then((doc) => {
           console.log("Spremljeno", doc.id);
           this.save = false;
-          this.favbutton()
+          this.favbutton();
         })
         .catch((e) => {
           console.error(e);
@@ -111,9 +109,11 @@ export default {
         .delete()
         .then(() => {
           console.log("Document successfully deleted!");
-          this.remove=false;
+          this.remove = false;
           this.favbutton();
-          this.$emit("close");
+          if (this.$route.name == "Favorites") {
+            this.$emit("close");
+          }
           this.$root.$emit("Favorites");
         })
         .catch((error) => {
@@ -121,7 +121,6 @@ export default {
         });
     },
   },
-
 };
 </script>
 

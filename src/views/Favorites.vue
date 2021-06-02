@@ -40,8 +40,13 @@ export default {
   computed: {
     filteredCards() {
       let termin = this.store.searchTerm;
+      let selectedDiet = this.store.selectedDiet;
 
-      return this.cards.filter((card) => card.name.includes(termin));
+      if (selectedDiet == "All diets"){
+        return this.cards.filter((card) => card.name.includes(termin));
+      }
+      
+      return this.cards.filter((card) => card.name.includes(termin) && card.diets.includes(selectedDiet));
     },
   },
   mounted() {
@@ -63,7 +68,7 @@ export default {
           if (query.empty) {
             console.log("empty");
             this.message =
-              "You didn't add any recipes in your favorite collection, yet!";
+              "You didn't favorite any recipes yet!";
           }
           query.forEach((doc) => {
             const data = doc.data();
@@ -80,6 +85,7 @@ export default {
               authorName: data.authorName,
               description: data.description,
               time: data.time,
+              diets: data.diets,
             });
           });
         });

@@ -78,7 +78,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="Ketogenic"
+                          value=" Ketogenic"
                           id="Ketogenic"
                         />
                         <label class="form-check-label" for="flexCheckDefault">
@@ -92,7 +92,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="Paleo"
+                          value=" Paleo"
                           id="Paleo"
                         />
                         <label class="form-check-label" for="flexCheckChecked">
@@ -107,7 +107,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="Vegan"
+                          value=" Vegan"
                           id="Vegan"
                         />
                         <label class="form-check-label" for="flexCheckChecked">
@@ -122,7 +122,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="GI diet"
+                          value=" GI diet"
                           id="GI Diet"
                         />
                         <label class="form-check-label" for="flexCheckChecked">
@@ -137,7 +137,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="Low fat"
+                          value=" Low fat"
                           id="Low fat"
                         />
                         <label class="form-check-label" for="flexCheckChecked">
@@ -152,7 +152,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="Mediterranean"
+                          value=" Mediterranean"
                           id="Mediterranean"
                         />
                         <label class="form-check-label" for="flexCheckChecked">
@@ -167,7 +167,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="Raw food"
+                          value=" Raw food"
                           id="Raw food"
                         />
                         <label class="form-check-label" for="flexCheckChecked">
@@ -182,7 +182,7 @@
                           v-model="checkedDiets"
                           class="form-check-input"
                           type="checkbox"
-                          value="Flexible"
+                          value=" Flexible"
                           id="Flexible"
                         />
                         <label class="form-check-label" for="flexCheckChecked">
