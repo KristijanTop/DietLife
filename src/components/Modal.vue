@@ -19,7 +19,6 @@
               {{ data.description }}
             </slot>
           </div>
-
           <div class="modal-footer">
             <slot name="footer">
               <button v-if="remove" @click="removeFromFav()">
@@ -56,6 +55,7 @@ export default {
   },
   mounted() {
     this.favbutton();
+    
   },
   methods: {
     favbutton() {
@@ -77,6 +77,7 @@ export default {
         });
     },
 
+    
     addToFavorites() {
       db.collection("Favoriteposts")
         .add({
@@ -102,6 +103,7 @@ export default {
         });
     },
 
+    
     removeFromFav() {
       var delitepost = db.collection("Favoriteposts");
       delitepost
