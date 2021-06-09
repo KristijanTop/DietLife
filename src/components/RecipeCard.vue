@@ -3,6 +3,10 @@
     <div style="width:325px" class="card text-center">
       <div class="card-header">
         <strong>{{ info.name }}</strong>
+    <li>
+        <button v-if="$route.name == 'MyRecipes'" @click="removeFromMyRec()"> Delete Recipe
+        </button>
+    </li> 
       </div>
       <a v-on:click="$emit('click')" style="cursor: pointer">
       <div style="height:350px; overflow: hidden; display: flex; justify-content: center;">
@@ -17,6 +21,7 @@
 </template>
 
 <script>
+import { db } from "@/firebase";
 import moment from "moment";
 
 export default {
@@ -25,9 +30,32 @@ export default {
   computed: {
     postedFromNow() {
       return moment(this.info.time).fromNow();
+
     },
   },
+methods:
+{
+  removeFromMyRec() {
+      var delitepost = db.collection("posts");
+      delitepost
+        .doc(this.info.id)
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+          
+          if (this.$route.name == "MyRecipes") {
+            this.$emit("close");
+          }
+          this.$root.$emit("MyRecipes");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+    },
+    
+  },
 };
+
 </script>
 
 <style>

@@ -46,7 +46,6 @@
               <p><strong>Description:</strong> {{ data.description }}</p>
             </slot>
           </div>
-
           <div class="modal-footer">
             <slot name="footer">
               <button class="btn btn-secondary" @click="$emit('close')">
@@ -77,6 +76,7 @@ export default {
   },
   mounted() {
     this.favbutton();
+    
   },
   methods: {
     favbutton() {
@@ -98,6 +98,7 @@ export default {
         });
     },
 
+    
     addToFavorites() {
       db.collection("Favoriteposts")
         .add({
@@ -125,6 +126,7 @@ export default {
         });
     },
 
+    
     removeFromFav() {
       var delitepost = db.collection("Favoriteposts");
       delitepost
