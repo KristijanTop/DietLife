@@ -39,14 +39,14 @@ export default {
   },
   computed: {
     filteredCards() {
-      let termin = this.store.searchTerm;
+      let termin = this.store.searchTerm.toLowerCase();
       let selectedDiet = this.store.selectedDiet;
 
       if (selectedDiet == "All diets"){
-        return this.cards.filter((card) => card.name.includes(termin));
+        return this.cards.filter((card) => card.name.toLowerCase().includes(termin));
       }
       
-      return this.cards.filter((card) => card.name.includes(termin) && card.diets.includes(selectedDiet));
+      return this.cards.filter((card) => card.name.toLowerCase().includes(termin) && card.diets.includes(selectedDiet));
     },
   },
   mounted() {
@@ -61,7 +61,7 @@ export default {
       console.log("pokazuje korisnika!", store.currentUser.name);
       db.collection("Favoriteposts")
         .where("userId", "==", store.currentUser.id)
-        //.orderBy("posted_at", "desc")
+        .orderBy("time", "desc")
         .get()
         .then((query) => {
           this.cards = [];
@@ -77,6 +77,7 @@ export default {
               userId: store.currentUser.id,
               id: data.id,
               favId: doc.id,
+              calories: data.calories,
               fat: data.fat,
               url: data.url,
               name: data.name,
@@ -86,6 +87,7 @@ export default {
               description: data.description,
               time: data.time,
               diets: data.diets,
+              ingredients: data.ingredients,
             });
           });
         });

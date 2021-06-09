@@ -41,14 +41,14 @@ export default {
   },
   computed: {
     filteredCards() {
-      let termin = this.store.searchTerm;
+      let termin = this.store.searchTerm.toLowerCase();
       let selectedDiet = this.store.selectedDiet;
 
       if (selectedDiet == "All diets"){
-        return this.cards.filter((card) => card.name.includes(termin));
+        return this.cards.filter((card) => card.name.toLowerCase().includes(termin));
       }
       
-      return this.cards.filter((card) => card.name.includes(termin) && card.diets.includes(selectedDiet));
+      return this.cards.filter((card) => card.name.toLowerCase().includes(termin) && card.diets.includes(selectedDiet));
     },
   },
   mounted() {
@@ -77,6 +77,7 @@ export default {
               this.cards.push({
                 id: doc.id,
                 authorId: data.authorId,
+                calories: data.calories,
                 carbohydrates: data.carbohydrates,
                 fat: data.fat,
                 proteins: data.proteins,
@@ -86,6 +87,7 @@ export default {
                 url: data.url,
                 diets: data.diets,
                 authorName: data.authorName,
+                ingredients: data.ingredients,
               });
             });
           });

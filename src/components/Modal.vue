@@ -2,33 +2,54 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container-recipe">
           <div class="modal-header">
-            <div class="title">
-              <h1>{{ data.name }}</h1>
+            <div class="row">
+              <div class="col col-10">
+                <div class="title">
+                  <h1>{{ data.name }}</h1>
+                </div>
+              </div>
+              <div class="col-2">
+                <button
+                  class="favorite-btn"
+                  v-if="remove"
+                  @click="removeFromFav()"
+                >
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button
+                  class="favorite-btn"
+                  v-if="save"
+                  @click="addToFavorites()"
+                >
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
             </div>
-            <div class="title">Author: {{ data.authorName }}</div>
             <div class="title">
-              Carbohydrates: {{ data.carbohydrates }} | Fat: {{ data.fat }} |
-              Protein: {{ data.proteins }}
+              Author: <strong>{{ data.authorName }}</strong>
             </div>
-            <div class="title">Diets: {{ data.diets.toString() }}</div>
+            <div class="title">
+              Diets: <strong>{{ data.diets.toString() }}</strong>
+            </div>
           </div>
-          <div class="modal-body">
+          <div class="modal-body-recipe">
             <slot name="body">
-              {{ data.description }}
+              <p>
+                Per portion: kcal: <strong>{{ data.calories }}</strong> | Carbs:
+                <strong>{{ data.carbohydrates }}</strong> | Fat:
+                <strong>{{ data.fat }}</strong> | Protein:
+                <strong>{{ data.proteins }}</strong>
+              </p>
+              <p><strong>Ingredients:</strong> {{ data.ingredients }}</p>
+              <p><strong>Description:</strong> {{ data.description }}</p>
             </slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-              <button v-if="remove" @click="removeFromFav()">
-                Remove from favorites
-              </button>
-              <button v-if="save" @click="addToFavorites()">
-                Add to Favorites
-              </button>
-              <button class="modal-default-button" @click="$emit('close')">
+              <button class="btn btn-secondary" @click="$emit('close')">
                 Close
               </button>
             </slot>
@@ -85,12 +106,14 @@ export default {
           fat: this.data.fat,
           url: this.data.url,
           name: this.data.name,
+          calories: this.data.calories,
           proteins: this.data.proteins,
           carbohydrates: this.data.carbohydrates,
           authorName: this.data.authorName,
           description: this.data.description,
           time: this.data.time,
           diets: this.data.diets,
+          ingredients: this.data.ingredients,
         })
         .then((doc) => {
           console.log("Spremljeno", doc.id);
@@ -142,37 +165,60 @@ export default {
   vertical-align: middle;
 }
 
-.modal-container {
-  width: 90%;
+.modal-container-recipe {
+  width: 90% !important;
   max-width: 550px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 15px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Ubuntu" !important;
 }
 
 .modal-header {
   margin-top: 0;
   display: block !important;
+  max-height: 203px !important;
+  overflow: auto;
 }
 
-.modal-body {
+.modal-body-recipe {
   margin: 20px 0;
+  padding: 15px;
   height: 90%;
   max-height: 275px;
   overflow: auto;
   text-align: justify;
 }
 
-.modal-default-button {
-  float: right;
-}
-
 .title {
   padding: 5px;
+}
+
+h1 {
+  font-size: 2.2em !important;
+}
+
+.favorite-btn {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  height: 100%;
+}
+
+.bi-heart-fill::before,
+.bi-heart::before {
+  font-size: 2.5em;
+  text-align: center;
+  color: #425387;
+}
+
+.bi-heart-fill:hover::before,
+.bi-heart:hover::before {
+  color: #3b4978;
 }
 
 /*

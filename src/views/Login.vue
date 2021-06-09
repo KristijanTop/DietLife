@@ -40,12 +40,12 @@
             <br />
             <span v-if="msg.password" class="span">{{ msg.password }}</span>
           </div>
-          <input
+          <button
             type="button"
             @click="login()"
-            class="btn btn-primary btn-lg"
-            value="Login"
-          />
+            class="action-button-login"
+          >Log in
+          </button>
           <div class="signup-link">
             Don't have an account? <a href="Signup">Sign up</a>
           </div>
@@ -148,8 +148,8 @@ export default {
 #login {
   width: 380px;
   margin: 5% auto 0;
-  background: #fff;
-  border-radius: 15px;
+  border: 1px solid #f5f5f5;
+  border-radius: 30px;
   box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin: 0;
@@ -158,11 +158,33 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.btn {
+  border-radius: 10px !important;
+}
+
+.action-button-login {
+  font-size: 18px !important;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  background-color: #425387;
+  color: white;
+  padding: .375rem .75rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.action-button-login:hover {
+  background-color: #3b4978;
+}
+
 .container form {
   padding: 10px 30px 25px 30px;
 }
 .container .tittle {
-  color: rgba(10, 95, 253, 0.959);
+  color: #425387;
   font-size: 40px;
   margin-top: 20px;
   font-weight: 500;
@@ -192,7 +214,7 @@ export default {
 .span {
   padding-top: 0px;
   margin-top: 0px;
-  font-size: 14px;
+  
   color: red;
 }
 .eye {

@@ -23,6 +23,7 @@
             id="fullname"
             class="form-control"
             placeholder="Full Name"
+            maxlength="25"
             v-model="fullname"
             @keyup.enter="submit, signup()"
           />
@@ -50,12 +51,12 @@
           <br />
           <span v-if="msg.password" class="span">{{ msg.password }}</span>
         </div>
-        <input
+        <button
           type="button"
-          class="btn btn-primary btn-lg"
+          class="action-button-login"
           @click="signup(), submit"
-          value="Sign Up"
-        />
+        >Sign Up
+        </button>
         <div class="signup-link">
           Already have an account? <a href="Login">Log in</a>
         </div>
@@ -166,7 +167,8 @@ export default {
   width: 380px;
   margin: 5% auto 0;
   background: #fff;
-  border-radius: 15px;
+  border-radius: 30px;
+  border: 1px solid #f5f5f5;
   box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   justify-content: center;
@@ -177,11 +179,16 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.btn {
+  border-radius: 10px !important;
+}
+
 .container form {
   padding: 10px 30px 25px 30px;
 }
 .container .tittle {
-  color: rgba(25, 106, 255, 0.925);
+  color: #425387;
   font-size: 40px;
   margin-top: 20px;
   font-weight: 500;
