@@ -1,12 +1,13 @@
 <template>
   <div class="col" style="padding:10px 23px">
     <div style="width:325px" class="card text-center">
-      <div class="card-header">
+      <div class="card-header row">
+        <div class="col-12">
         <strong>{{ info.name }}</strong>
-    <li>
-        <button v-if="$route.name == 'MyRecipes'" @click="removeFromMyRec()"> Delete Recipe
+        <button class="delete-button" v-if="$route.name == 'MyRecipes'" @click="removeFromMyRec()">
+          <i class="bi bi-trash-fill"></i>
         </button>
-    </li> 
+        </div>
       </div>
       <a v-on:click="$emit('click')" style="cursor: pointer">
       <div style="height:350px; overflow: hidden; display: flex; justify-content: center;">
@@ -33,8 +34,7 @@ export default {
 
     },
   },
-methods:
-{
+methods: {
   removeFromMyRec() {
       var delitepost = db.collection("posts");
       delitepost
@@ -42,10 +42,6 @@ methods:
         .delete()
         .then(() => {
           console.log("Document successfully deleted!");
-          
-          if (this.$route.name == "MyRecipes") {
-            this.$emit("close");
-          }
           this.$root.$emit("MyRecipes");
         })
         .catch((error) => {
@@ -69,18 +65,42 @@ methods:
 
 .card {
   border-radius: 15px !important;
+  overflow: hidden !important;
 }
 
 .card-header {
   border-top-left-radius: 15px !important;
   border-top-right-radius: 15px !important;
   max-height: 41px !important;
-  overflow: hidden;
   }
 
 .card-footer {
   border-bottom-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
+  }
+  
+  .delete-button {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #999999;
+    border-radius: 20px;
+  }
+
+.delete-button:focus {
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .delete-button:hover {
+    color: #2c3e50;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
   }
 
 </style>

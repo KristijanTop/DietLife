@@ -79,11 +79,12 @@
                 <option value=" Ketogenic">Ketogenic diet</option>
                 <option value=" Paleo">Paleo diet</option>
                 <option value=" Vegan">Vegan diet</option>
+                <option value=" Vegeterian">Vegeterian diet</option>
+                <option value=" Gluten-free">Gluten-free diet</option>
                 <option value=" GI diet">GI diet</option>
                 <option value=" Low fat">Low fat</option>
                 <option value=" Mediterranean">Mediterranean</option>
                 <option value=" Raw food">Raw food</option>
-                <option value=" Flexible">Flexible</option>
               </select>
             </li>
 
