@@ -6,18 +6,20 @@
           <div class="modal-wrapper">
             <div class="modal-container-recipe">
               <div class="modal-body-recipe">
-                <div>
-                  Do you realy want to delete this recepie?
+                <div class="popUpMsg">
+                  <p>Are you sure you want to delete this recipe?</p>
                 </div>
-                <button @click="closePopUp()">No</button>
-                <button @click="removeFromMyRec()">Yes</button>
+                <div class="modal-footer popUp">
+                <button class="btn btn-secondary" @click="closePopUp()">No</button>
+                <button class="action-button" @click="removeFromMyRec()">Yes</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </transition>
     </div>
-    <div class="col" style="padding:10px 23px">
+    <div class="col" style="padding:10px">
       <div style="width:325px" class="card text-center">
         <div class="card-header row">
           <div class="col-12">
@@ -135,4 +137,14 @@ export default {
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 20px;
 }
+
+.popUp {
+  height: 40px;
+}
+
+.popUpMsg {
+  font-size: 22px;
+  text-align: center;
+}
+
 </style>

@@ -171,7 +171,7 @@ export default {
   width: 90% !important;
   max-width: 550px;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 20px 30px 2px 30px;
   background-color: #fff;
   border-radius: 15px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -190,7 +190,7 @@ export default {
   margin: 20px 0;
   padding: 15px;
   height: 90%;
-  max-height: 275px;
+  max-height: 290px;
   overflow: auto;
   text-align: justify;
 }

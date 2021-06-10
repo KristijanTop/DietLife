@@ -69,7 +69,7 @@ export default {
     getPosts() {
       db.collection("posts")
         .where("authorId", "==", store.currentUser.id)
-        //.orderBy("posted_at", "desc")
+        .orderBy("posted_at", "desc")
         .get()
         .then((query) => {
           this.cards = [];
