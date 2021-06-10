@@ -44,58 +44,65 @@ export default {
       let termin = this.store.searchTerm.toLowerCase();
       let selectedDiet = this.store.selectedDiet;
 
-      if (selectedDiet == "All diets"){
-        return this.cards.filter((card) => card.name.toLowerCase().includes(termin));
+      if (selectedDiet == "All diets") {
+        return this.cards.filter((card) =>
+          card.name.toLowerCase().includes(termin)
+        );
       }
-      
-      return this.cards.filter((card) => card.name.toLowerCase().includes(termin) && card.diets.includes(selectedDiet));
+
+      return this.cards.filter(
+        (card) =>
+          card.name.toLowerCase().includes(termin) &&
+          card.diets.includes(selectedDiet)
+      );
     },
   },
   mounted() {
-    this.$root.$on('MyRecipes', () => {
-            this.getPosts()
-        })
+    this.$root.$on("MyRecipes", () => {
+      this.getPosts();
+    });
     this.getPosts();
   },
   //firebase dohvat
 
   methods: {
     getPosts() {
-        db.collection("posts")
-          .where("authorId", "==", store.currentUser.id)
-          //.orderBy("posted_at", "desc")
-          .get()
-          .then((query) => {
-            this.cards = [];
-            if (query.empty) {
-              console.log("empty");
-              this.message = "You didn't add any recipes yet!";
-            }
-            query.forEach((doc) => {
-              const data = doc.data();
+      db.collection("posts")
+        .where("authorId", "==", store.currentUser.id)
+        //.orderBy("posted_at", "desc")
+        .get()
+        .then((query) => {
+          this.cards = [];
+          if (query.empty) {
+            console.log("empty");
+            this.message = "You didn't add any recipes yet!";
+          }
+          query.forEach((doc) => {
+            const data = doc.data();
 
-              this.cards.push({
-                id: doc.id,
-                authorId: data.authorId,
-                calories: data.calories,
-                carbohydrates: data.carbohydrates,
-                fat: data.fat,
-                proteins: data.proteins,
-                name: data.name,
-                time: data.posted_at,
-                description: data.desc,
-                url: data.url,
-                diets: data.diets,
-                authorName: data.authorName,
-                ingredients: data.ingredients,
-              });
+            this.cards.push({
+              id: doc.id,
+              authorId: data.authorId,
+              calories: data.calories,
+              carbohydrates: data.carbohydrates,
+              fat: data.fat,
+              proteins: data.proteins,
+              name: data.name,
+              time: data.posted_at,
+              description: data.desc,
+              url: data.url,
+              diets: data.diets,
+              authorName: data.authorName,
+              ingredients: data.ingredients,
             });
           });
+        });
     },
     openModal(data) {
       this.modalData = data;
       this.modalVisible = true;
     },
+    
   },
   components: {
     RecipeCard,
