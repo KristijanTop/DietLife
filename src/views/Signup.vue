@@ -53,7 +53,7 @@
         </div>
         <button
           type="button"
-          class="action-button-login"
+          class="action-button-signup"
           @click="signup(), submit"
         >Sign Up
         </button>
@@ -182,6 +182,19 @@ export default {
 
 .btn {
   border-radius: 10px !important;
+}
+
+.action-button-signup {
+  font-size: 18px !important;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  background-color: #425387;
+  color: white;
+  padding: .375rem .75rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
 }
 
 .container form {
