@@ -30,21 +30,18 @@
             <a
               @click="showpassword()"
               v-if="visability == 'password'"
-              class="eye"
+              class="eye-login"
             >
-              <img src="@/assets/visibility.png" class="eye" />
+              <img src="@/assets/visibility.png" class="eye-login" />
             </a>
-            <a @click="hidepassword()" v-if="visability == 'text'" class="eye">
-              <img src="@/assets/invisible.png" class="eye" />
+            <a @click="hidepassword()" v-if="visability == 'text'" class="eye-login">
+              <img src="@/assets/invisible.png" class="eye-login" />
             </a>
             <br />
             <span v-if="msg.password" class="span">{{ msg.password }}</span>
           </div>
-          <button
-            type="button"
-            @click="login()"
-            class="action-button-login"
-          >Log in
+          <button type="button" @click="login()" class="action-button-login">
+            Log in
           </button>
           <div class="signup-link">
             Don't have an account? <a href="Signup">Sign up</a>
@@ -118,7 +115,7 @@ export default {
         .then((result) => {
           console.log("Uspiješna prijava!", result);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           var errorCode = error.code;
           var errorMessage = error.message;
           if (errorCode === "auth/wrong-password") {
@@ -144,19 +141,16 @@ export default {
 </script>
 
 <style lang="scss">
-
 #login {
   width: 380px;
-  margin: 5% auto 0;
-  border: 1px solid #f5f5f5;
   border-radius: 30px;
-  box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   text-align: center;
-  margin: 0;
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
+  padding: 10px 30px 25px 30px;
 }
 
 .btn {
@@ -171,7 +165,7 @@ export default {
   background: none;
   background-color: #425387;
   color: white;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   border-radius: 10px;
   border: 1px solid transparent;
 }
@@ -180,9 +174,6 @@ export default {
   background-color: #3b4978;
 }
 
-.container form {
-  padding: 10px 30px 25px 30px;
-}
 .container .tittle {
   color: #425387;
   font-size: 40px;
@@ -214,11 +205,15 @@ export default {
 .span {
   padding-top: 0px;
   margin-top: 0px;
-  
+
   color: red;
 }
-.eye {
-  max-width: 7%;
-  max-height: 7%;
+
+.eye-login {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  right: 20px;
+  top: 96.5px;
 }
 </style>

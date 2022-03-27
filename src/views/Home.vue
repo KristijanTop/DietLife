@@ -7,7 +7,7 @@
     />
 
     <div
-      style="margin-top:15px"
+      style="margin:15px 0px 0px 0px"
       class="row row-cols-auto g-4 justify-content-center"
     >
       <recipe-card

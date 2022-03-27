@@ -222,7 +222,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Ubuntu");
 
 #app {
-  //font-family: Avenir, Helvetica, Arial, sans-serif;
   font-family: "Ubuntu";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -233,7 +232,6 @@ export default {
   padding: 10px;
   background-color: white;
   min-width: 325px;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.0125);
 
   .navbar-brand {
     margin-left: 5px;

@@ -101,6 +101,7 @@ export default {
 .card {
   border-radius: 15px !important;
   overflow: hidden !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .card-header {

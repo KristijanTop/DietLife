@@ -41,12 +41,12 @@
           <a
             @click="showpassword()"
             v-if="visability == 'password'"
-            class="eye"
+            class="eye-signup"
           >
-            <img src="@/assets/visibility.png" class="eye" />
+            <img src="@/assets/visibility.png" class="eye-signup" />
           </a>
-          <a @click="hidepassword()" v-if="visability == 'text'" class="eye">
-            <img src="@/assets/invisible.png" class="eye" />
+          <a @click="hidepassword()" v-if="visability == 'text'" class="eye-signup">
+            <img src="@/assets/invisible.png" class="eye-signup" />
           </a>
           <br />
           <span v-if="msg.password" class="span">{{ msg.password }}</span>
@@ -55,7 +55,8 @@
           type="button"
           class="action-button-signup"
           @click="signup(), submit"
-        >Sign Up
+        >
+          Sign Up
         </button>
         <div class="signup-link">
           Already have an account? <a href="Login">Log in</a>
@@ -133,15 +134,15 @@ export default {
               name: this.fullname,
               id: user.user.uid,
             })
-            .then(function() {
+            .then(function () {
               console.log("Document successfully written!");
             })
-            .catch(function(error) {
+            .catch(function (error) {
               console.error("Error writing document: ", error);
             });
           alert("Uspješna registracija", user);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("Došlo je do greške", error);
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -168,8 +169,7 @@ export default {
   margin: 5% auto 0;
   background: #fff;
   border-radius: 30px;
-  border: 1px solid #f5f5f5;
-  box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -178,6 +178,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: 10px 30px 25px 30px;
 }
 
 .btn {
@@ -192,17 +193,14 @@ export default {
   background: none;
   background-color: #425387;
   color: white;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   border-radius: 10px;
   border: 1px solid transparent;
 }
 
-.container form {
-  padding: 10px 30px 25px 30px;
-}
 .container .tittle {
   color: #425387;
-  font-size: 40px;
+  //font-size: 40px;
   margin-top: 20px;
   font-weight: 500;
   text-align: center;
@@ -232,8 +230,12 @@ export default {
   font-size: 14px;
   color: red;
 }
-.eye {
-  max-width: 7%;
-  max-height: 7%;
+
+.eye-signup {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  right: 20px;
+  top: 124.5px;
 }
 </style>
